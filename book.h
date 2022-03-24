@@ -11,11 +11,12 @@
 
 // Estos ifs se llaman include guardian, evitan que el codigo se rompa.
 #ifndef __BOOK__
-#define __BOOK__ book_already_defined
+#define __BOOK__// book_already_defined
 // Esto tambien es un include guardian, pero solo funciona en windows
 //#pragma once
 // <order 2>
 #include "comun.h"
+#include "error.h"
 
 /** @brief Estructura que representa un Libro (Book) */
 struct Book
@@ -88,6 +89,18 @@ string toLongString(Book b)
     stringstream ss;
     ss << "\"" << b.title << "\",\"" << b.authors << "\"," << b.year << ",\"" << b.slug << "\"," << b.price;
     return ss.str();
+}
+
+string generateSlug(const Book& b)
+{
+    string title = tolower(b.title);
+    for(unsigned i = 0;i<title.length();i++)
+    {
+        if(!isalnum(title[i])) title[i] = '-';
+    }
+    title = trim(title,'-');
+    title = reduce(title,'-');
+    return title;
 }
 
 #endif

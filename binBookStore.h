@@ -11,7 +11,8 @@
 
 // Estos ifs se llaman include guardian, evitan que el codigo se rompa.
 #ifndef __BINBOOKSTORE__
-#define __BINBOOKSTORE__ binbookstore_already_defined
+#define __BINBOOKSTORE__
+//binbookstore_already_defined
 // Esto tambien es un include guardian, pero solo funciona en windows
 //#pragma once
 // <order 5>

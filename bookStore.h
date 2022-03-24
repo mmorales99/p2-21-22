@@ -11,10 +11,12 @@
 
 // Estos ifs se llaman include guardian, evitan que el codigo se rompa.
 #ifndef __BOOKSTORE__
-#define __BOOKSTORE__ bookstore_already_defined
+#define __BOOKSTORE__ 
+//bookstore_already_defined
 // Esto tambien es un include guardian, pero solo funciona en windows
 //#pragma once
 // <order 3>
+#include "comun.h"
 #include "book.h"
 
 /** @brief Estructura que representa una tienda de libros (BookStore) */
@@ -96,4 +98,50 @@ string toLongString(BookStore bs)
     return ss.str();
 }
 
+BookStore addBook(BookStore& myBookStore, Book b)
+{
+    myBookStore.books.push_back(b);
+    return myBookStore;
+}
+
+/**
+ * @brief Elastic search sobre la lista de libros
+ * 
+ * @param myBookStore 
+ * @param b 
+ * @return int 
+ */
+int searchBook(const BookStore& myBookStore, Book b)
+{
+    if(b.id==-1) return -1;
+    for (unsigned i = 0; i < myBookStore.books.size(); i++)
+    {
+        Book baux = myBookStore.books[i];
+        if(baux.id == b.id || baux.authors == b.authors || baux.price == b.price || baux.slug == b.slug || baux.title == b.title || baux.year == b.year)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int searchBook(const BookStore& myBookStore, int id=-1)
+{
+    if(id==-1) return id;
+    for (unsigned i = 0; i < myBookStore.books.size(); i++)
+    {
+        Book b = myBookStore.books[i];
+        if(b.id == id)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+BookStore deleteBook(BookStore& myBookStore, int pos){
+    if(pos == -1) return myBookStore;
+    myBookStore.books.erase(myBookStore.books.begin()+pos);
+    return myBookStore;
+}
 #endif

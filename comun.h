@@ -11,7 +11,8 @@
 
 // Estos ifs se llaman include guardian, evitan que el codigo se rompa.
 #ifndef __COMUN__
-#define __COMUN__ comun_already_defined
+#define __COMUN__ 
+//comun_already_defined
 // Esto tambien es un include guardian, pero solo funciona en windows
 //#pragma once
 
@@ -46,10 +47,10 @@
          * @param str Cadena a sanitizar
          * @return Cadena sin espacios a la derecha
         */
-        string rtrim(const string &str)
+        string rtrim(const string &str,const char trimable=' ')
         {
             if(str.empty() || str.length() == 0) return "";
-            size_t first = str.find_first_not_of(' ');
+            size_t first = str.find_first_not_of(trimable);
             if (first == std::string::npos) return "";
             string rtrimed = str.substr(first);
             return rtrimed;
@@ -59,11 +60,11 @@
          * @param str Cadena a sanitizar
          * @return Cadena sin espacios a la izquierda
         */
-        string ltrim(const string &str)
+        string ltrim(const string &str, const char trimable=' ')
         {
             if(str.empty() || str.length() == 0) return "";
-            size_t last = str.find_last_not_of(' ');
-            if (last == std::string::npos) return "";
+            size_t last = str.find_last_not_of(trimable);
+            if (last == str.length()-1) return str;
             string ltrimed = str.substr(0,last);
             return ltrimed;
         }
@@ -72,10 +73,10 @@
          * @param str Cadena a sanitizar
          * @return Cadena sin espacios a izquierda y derecha
         */
-        string trim(const string& str)
+        string trim(const string& str,const char trimable=' ')
         {
-            string trimmed = ltrim(str);
-            trimmed = rtrim(trimmed);
+            string trimmed = ltrim(str,trimable);
+            trimmed = rtrim(trimmed,trimable);
             return trimmed;
         }
 
@@ -95,19 +96,40 @@
                 for (size_t j = 0; j < safe.length(); j++)
                 {
                     isSafe = str[i]==safe[j] || isSafe;
-                    cout << str[i] << " - " << isSafe << endl;
                 }
                 if(!isSafe || i == str.length()-1) return isSafe;
                 isSafe = false;
             }
         }
+
+        /**
+         * @brief Convierte una cadena a minusculas
+         * 
+         * @param str cadena con mayusculas
+         * @return string cadena solo en minosculas
+         */
+        string tolower(const string& str)
+        {
+            string out = "";
+            for(unsigned i = 0;i<str.length();i++)
+            {
+                out += tolower(str[i]);
+            }
+            return out;
+        }
+
+        string reduce(const string& str, const char reducible = ' ')
+        {
+            string out = "";
+            for(unsigned i = 0;i<str.length();i++)
+            {
+                if(str[i] == str[i+1] && str[i] == reducible) continue;
+                out += str[i];
+            }
+            return out;
+        }
         
     #pragma endregion
-#pragma endregion
-
-#pragma region MIS CABECERAS
-    #include "error.h"
-    #include "menu.h"
 #pragma endregion
 
 #endif

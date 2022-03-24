@@ -1,24 +1,27 @@
 #include <iostream>
+#include "comun.h"
+#include "error.h"
 
 using namespace std;
 
-bool isSafeString(const string& str)
-{
-    string safe = " :,-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    bool isSafe = false;
-    for (size_t i = 0; i < str.length(); i++)
-    {
-        for (size_t j = 0; j < safe.length(); j++)
-        {
-            isSafe = str[i]==safe[j] || isSafe;
-            cout << str[i] << " - " << isSafe << endl;
-        }
-        if(!isSafe || i == str.length()-1) return isSafe;
-        isSafe = false;
-    }
-}
 
 int main(){
-    isSafeString("Ábe ce,da:ri-o71372 ñ");
+    string opts;
+    bool isSafe = false;
+    cout << "Enter publication year:";
+    getline(cin,opts,'\n');
+    cout << opts << endl;
+    opts = ltrim(opts);
+    cout << opts << endl;
+    opts = rtrim(opts);
+    cout << opts << endl;
+    int yyyy = stoi(opts);
+    cout << yyyy << endl;
+    if( !( 1440 <= yyyy && yyyy <= 2022 ))
+    {
+        error(ERR_BOOK_DATE);
+        isSafe = false;
+    }
+    else isSafe = true;
     return 0;
 }
