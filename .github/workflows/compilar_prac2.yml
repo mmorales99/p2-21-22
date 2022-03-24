@@ -2,6 +2,8 @@ name: Compilación Práctica 2
 on:
   push:
     branches: [ master, prac2 ]
+  workflow_dispatch:
+    
 jobs:
   compilar_todo:
     runs-on: ubuntu-16.04
