@@ -29,7 +29,7 @@ files: ${FILES}
 #comun.h.gch error.h.gch book.h.gch bookStore.h.gch binBook.h.gch binBookStore.h.gch menu.h.gch funcionesMain.h.gch menu2.h.gch funcionesImExport.h.gch
 
 sync:
-	git add . | git commit -a | git pull | git push
+	git add . & git commit -a & git pull & git push
 
 clean:
 	${RM} *.exe , *.gch
