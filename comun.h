@@ -108,11 +108,6 @@
 #pragma region MIS CABECERAS
     #include "error.h"
     #include "menu.h"
-    #include "book.h"
-    #include "bookStore.h"
-    #include "binBook.h"
-    #include "binBookStore.h"
-    #include "funcionesMain.h"
 #pragma endregion
 
 #endif

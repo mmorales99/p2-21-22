@@ -25,6 +25,11 @@
 
 // <order 7>
 #include "comun.h"
+#include "book.h"
+#include "bookStore.h"
+#include "binBook.h"
+#include "binBookStore.h"
+#include "funcionesMain.h"
 
 /**
  * @brief Programa que gestiona todas las operaciones soportadas por el programa principal
@@ -33,7 +38,7 @@
  * @param argv vector de argumentos
  * @param myBS tienda de libros sobre la que operar e interactuar
  */
-void gestionaArgumentos(int argc, char** argv, BS myBS)
+void gestionaArgumentos(int argc, char** argv, BookStore myBS)
 {
 
 }
@@ -43,7 +48,7 @@ void gestionaArgumentos(int argc, char** argv, BS myBS)
  * 
  * @param myBS tienda de libros sobre la que operar e interactuar
  */
-void gestionaInteracciones(BS &myBS)
+void gestionaInteracciones(BookStore &myBS)
 {
     string opts;
     char opt;
@@ -81,7 +86,7 @@ void gestionaInteracciones(BS &myBS)
 /** @brief Programa principal */
 int main(int argc, char** argv)
 {
-    BS myBS = createBookStore("My Book Store");
+    BookStore myBS = createBookStore("My Book Store");
     gestionaArgumentos(argc, argv, myBS);
     gestionaInteracciones(myBS);
 }

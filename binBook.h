@@ -34,9 +34,6 @@ struct BinBook
     float price;
 };
 
-/** @brief Alias de BinBook - para escribir menos - no se tiene que hacer */
-typedef BinBook BB;
-
 /**
  * @brief Funcion que crea registro binario de un libro
  * 
@@ -48,7 +45,7 @@ typedef BinBook BB;
  * @param price precio del libro
  * @return BB registro binario nuevo con los valores por defecto/pasados por parametro
  */
-BB createBinBook(
+BinBook createBinBook(
     unsigned int id = -1,
     char title[KMAXSTRING] = NULL,
     char authors[KMAXSTRING] = NULL,
@@ -57,7 +54,7 @@ BB createBinBook(
     float price = 0.0
     )
 {
-    BB bb;
+    BinBook bb;
     bb.id = id;
     strcpy(bb.title,title);
     bb.title[KMAXSTRING-1] = '\0';
@@ -81,7 +78,7 @@ BB createBinBook(
  * @param price precio del libro
  * @return BB registro binario nuevo con los valores por defecto/pasados por parametro
  */
-BB createBinBook(
+BinBook createBinBook(
     unsigned int id = -1,
     string title = "",
     string authors = "",

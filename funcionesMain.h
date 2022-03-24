@@ -15,7 +15,11 @@
 // Esto tambien es un include guardian, pero solo funciona en windows
 //#pragma once
 // <order 6> 
-#include "comun.h"
+//#include "comun.h"
+#include "book.h"
+#include "bookStore.h"
+#include "binBook.h"
+#include "binBookStore.h"
 
 /**
  * @brief Muestra una lista con los libros
@@ -24,11 +28,11 @@
  * Muestra una lista con los libros ordenados por el id con el formato:
  * id. titulo (anyo), precio
  * 
- * @param myBS tienda de libros a mostrar
+ * @param myBookStore tienda de libros a mostrar
  */
-void showCatalog(const BS& myBS)
+void showCatalog(const BookStore& myBookStore)
 {
-    string out = toShortString(myBS);
+    string out = toShortString(myBookStore);
     cout << out;
     return;
 }
@@ -40,17 +44,17 @@ void showCatalog(const BS& myBS)
  * Muestra una lista con los libros ordenados por el id con el formato:
  * "titulo","autores",anyo,"URL",precio
  * 
- * @param myBS tienda de libros a mostrar
+ * @param myBookStore tienda de libros a mostrar
  */
-void showExtendedCatalog(const BS& myBS)
+void showExtendedCatalog(const BookStore& myBookStore)
 {
-    string out = toLongString(myBS);
+    string out = toLongString(myBookStore);
     cout << out;
     return;
 }
 
 
-void addBook(BS& myBS)
+void addBook(BookStore& myBookStore)
 {
     string opts;
     do{

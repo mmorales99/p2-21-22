@@ -26,9 +26,6 @@ struct BinBookStore
     unsigned int nextId;
 };
 
-/** @brief Alias de BinBookStore - para escribir menos - no se tiene que hacer */
-typedef BinBookStore BBS;
-
 /**
  * @brief Funcion que crea registro binario de una tienda de libros
  * 
@@ -36,12 +33,12 @@ typedef BinBookStore BBS;
  * @param nextId identificador desde donde empezar la secuencia
  * @return BBS registro binario de una tienda de libros
  */
-BBS createBinBookStore(
+BinBookStore createBinBookStore(
     char name[KMAXSTRING] = NULL,
     unsigned int nextId = 1
     )
 {
-    BBS bbs;
+    BinBookStore bbs;
     bbs.nextId = nextId;
     strcpy(bbs.name,name);
     bbs.name[KMAXSTRING-1] = '\0';
@@ -55,7 +52,7 @@ BBS createBinBookStore(
  * @param nextId identificador desde donde empezar la secuencia
  * @return BBS registro binario de una tienda de libros
  */
-BBS createBinBookStore(
+BinBookStore createBinBookStore(
     string name = "",
     unsigned int nextId = 1
     )

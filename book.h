@@ -34,9 +34,6 @@ struct Book
     float price;
 };
 
-/** @brief Alias de Book - para escribir menos - no se tiene que hacer */
-typedef Book B;
-
 /**
  * @brief Funcion que crea un libro.
  * 
@@ -48,7 +45,7 @@ typedef Book B;
  * @param price Precio del libro (valor por defecto = 0.0)
  * @return B Libro nuevo con los valores por defecto/pasados por parametro
  */
-B createBook(
+Book createBook(
     unsigned int id = -1,
     string title = "",
     string authors = "",
@@ -57,7 +54,7 @@ B createBook(
     float price = 0.0
     )
 {
-    B b;
+    Book b;
     b.authors = authors;
     b.id = id;
     b.title = title;
@@ -73,7 +70,7 @@ B createBook(
  * @param b libro a convertir
  * @return string 'id titulo (anyo), precio'
  */
-string toShortString(B b)
+string toShortString(Book b)
 {
     stringstream ss;
     ss << b.id << ". " << b.title << " (" << b.year <<"), " << b.price ;
@@ -86,7 +83,7 @@ string toShortString(B b)
  * @param b libro a convertir
  * @return string '"titulo","autores",anyo,"URL",precio'
  */
-string toLongString(B b)
+string toLongString(Book b)
 {
     stringstream ss;
     ss << "\"" << b.title << "\",\"" << b.authors << "\"," << b.year << ",\"" << b.slug << "\"," << b.price;

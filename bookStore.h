@@ -15,7 +15,7 @@
 // Esto tambien es un include guardian, pero solo funciona en windows
 //#pragma once
 // <order 3>
-#include "comun.h"
+#include "book.h"
 
 /** @brief Estructura que representa una tienda de libros (BookStore) */
 struct BookStore
@@ -23,13 +23,10 @@ struct BookStore
     /** @brief Nombre de la tienda */
     string name;
     /** @brief Lista de libros */
-    vector<B> books;
+    vector<Book> books;
     /** @brief Siguiente identificador en la secuencia */
     unsigned int nextId;
 };
-
-/** @brief Alias de BookStore - para escribir menos - no se tiene que hacer */
-typedef BookStore BS;
 
 /**
  * @brief Funcion que crea una tienda de libros.
@@ -39,13 +36,13 @@ typedef BookStore BS;
  * @param nextId identificador desde donde empezar la secuencia
  * @return BS tienda de libros nueva con los valores por defecto/pasados por parametro
  */
-BS createBookStore(
+BookStore createBookStore(
     string name = "",
-    vector<B> books = vector<B>(),
+    vector<Book> books = vector<Book>(),
     unsigned int nextId = 1
     )
 {
-    BS bs;
+    BookStore bs;
     bs.name = name;
     bs.books = books;
     bs.nextId = nextId;
@@ -58,7 +55,7 @@ BS createBookStore(
  * @param bs tienda de libros de donde obtener el identificador
  * @return unsigned int identificador actual de la secuencia
  */
-unsigned int getNextID(BS& bs)
+unsigned int getNextID(BookStore& bs)
 {
     return bs.nextId++;
 }
@@ -69,13 +66,13 @@ unsigned int getNextID(BS& bs)
  * @param b tienda de libros a convertir
  * @return string 
  */
-string toShortString(BS bs)
+string toShortString(BookStore bs)
 {
     stringstream ss;
     //ss << bs.name << "(" << bs.books.size() << ")"<< ":" << endl;
     for(unsigned i = 0;i<bs.books.size();i++)
     {
-        B b = bs.books[i];
+        Book b = bs.books[i];
         ss << toShortString(b) << endl;
     }
     return ss.str();
@@ -87,13 +84,13 @@ string toShortString(BS bs)
  * @param b tienda de libros a convertir
  * @return string 
  */
-string toLongString(BS bs)
+string toLongString(BookStore bs)
 {
     stringstream ss;
     //ss << bs.name << "(" << bs.books.size() << ")"<< ":" << endl;
     for(unsigned i = 0;i<bs.books.size();i++)
     {
-        B b = bs.books[i];
+        Book b = bs.books[i];
         ss << toLongString(b) << endl;
     }
     return ss.str();
