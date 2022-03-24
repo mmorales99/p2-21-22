@@ -19,6 +19,7 @@
 #include "comun.h"
 #include "bookStore.h"
 #include "book.h"
+#include "menu2.h"
 
 /**
  * @brief Muestra una lista con los libros
@@ -139,7 +140,7 @@ void deleteBook(BookStore& myBookStore)
 
 void importExportMenu(const BookStore& myBookStore)
 {
-
+    gestionaInteracciones_ImportExportMenu(myBookStore);
 }
 
 #endif
