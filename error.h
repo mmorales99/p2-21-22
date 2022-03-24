@@ -32,6 +32,8 @@ enum ERROR
     ERR_BOOK_PRICE,
     /** @brief Error por identificador no valido */
     ERR_ID,
+    /** @brief Error por archivo no valido */
+    ERR_FILE,
 };
 
 /** @brief Funcion que 'maneja' los errores producidos y listados en ERROR.
@@ -58,6 +60,9 @@ void error(ERROR e)
         break;
     case ERR_ID:
         cout << "ERROR: wrong id" << endl;
+        break;
+    case ERR_FILE:
+        cout << "ERROR: wrong file" << endl;
         break;
     default:
         cout << "ERROR: there is no error in ERROR type equal to: " << e << endl;

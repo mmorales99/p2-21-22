@@ -1,27 +1,27 @@
 #include <iostream>
-#include "comun.h"
-#include "error.h"
+// #include "comun.h"
+// #include "error.h"
 
 using namespace std;
 
 
-int main(){
-    string opts;
-    bool isSafe = false;
-    cout << "Enter publication year:";
-    getline(cin,opts,'\n');
-    cout << opts << endl;
-    opts = ltrim(opts);
-    cout << opts << endl;
-    opts = rtrim(opts);
-    cout << opts << endl;
-    int yyyy = stoi(opts);
-    cout << yyyy << endl;
-    if( !( 1440 <= yyyy && yyyy <= 2022 ))
+bool isnum(const string& str)
+{
+    bool truth = true;
+    unsigned short int sepCounter = 0;
+    for(unsigned i=0;i<str.length();i++)
     {
-        error(ERR_BOOK_DATE);
-        isSafe = false;
+        if( sepCounter == 0 && (str[i] == '.' || str[i] == ',') )
+        {
+            sepCounter++;
+            continue;
+        } 
+        truth = truth && isdigit(str[i]);
     }
-    else isSafe = true;
+    return truth;
+}
+
+int main(){
+    cout << isnum(",1234.");
     return 0;
 }

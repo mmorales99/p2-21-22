@@ -66,7 +66,7 @@ bool isOption_ImportExportMenu(const string& str){
     return truth;
 }
 
-void gestionaInteracciones_ImportExportMenu(const BookStore &myBS)
+void gestionaInteracciones_ImportExportMenu(BookStore &myBS)
 {
     string opts;
     char opt;
@@ -81,6 +81,9 @@ void gestionaInteracciones_ImportExportMenu(const BookStore &myBS)
         opt = tolower(opts[0]);
         switch (opt)
         {
+        case IMPORT:
+            importFromCsv(myBS);
+            break;
         case BACK:
             return;
         default:

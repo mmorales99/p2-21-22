@@ -11,22 +11,6 @@ jobs:
     runs-on: ubuntu-16.04
     steps:
       - uses: actions/checkout@v2
-      - name: Compilar comun
-        run: g++ -c comun.h
-      - name: Compilar error
-        run: g++ -c error.h
-      - name: Compilar menu
-        run: g++ -c menu.h
-      - name: Compilar Book
-        run: g++ -c book.h
-      - name: Compilar BookStore
-        run: g++ -c bookStore.h
-      - name: Compilar BinBook
-        run: g++ -c binBook.h
-      - name: Compilar BinBookStore
-        run: g++ -c binBookStore.h
-      - name: Compilar funcionesMain
-        run: g++ -c funcionesMain.h
-      - name: Compilar main
-        run: g++ main.cc -o prac2
+      - name: Compilar todo
+        run: make debug
         

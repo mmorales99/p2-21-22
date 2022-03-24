@@ -18,6 +18,12 @@
 #include "comun.h"
 #include "error.h"
 
+const unsigned int KOLDEST_BOOK = 1440;
+
+const unsigned int KYOUNGEST_BOOK = 2022;
+
+const float KMIN_PRICE = 0.0f;
+
 /** @brief Estructura que representa un Libro (Book) */
 struct Book
 {
@@ -101,6 +107,74 @@ string generateSlug(const Book& b)
     title = trim(title,'-');
     title = reduce(title,'-');
     return title;
+}
+
+bool isSafeTitle(const string& str)
+{
+    bool isSafe = isSafeString(str);
+    if(!isSafe)
+    {
+        error(ERR_BOOK_TITLE);
+    }
+    return isSafe;
+}
+
+bool isSafeAuthor(const string& str)
+{
+    bool isSafe = isSafeString(str);
+    if(!isSafe)
+    {
+        error(ERR_BOOK_AUTHORS);
+    }
+    return isSafe;
+}
+bool isSafeYear(const string& str)
+{
+    if(!isnum(str)) return false;
+    int yyyy = stoi(str);
+    if( !( KOLDEST_BOOK <= yyyy && yyyy <= KYOUNGEST_BOOK ))
+    {
+        error(ERR_BOOK_DATE);
+        return false;
+    }
+    return true;
+}
+bool isSafePrice(const string& str)
+{
+    if(!isnum(str)) return false;
+    float pp = stof(str);
+    if( pp < KMIN_PRICE)
+    {
+        error(ERR_BOOK_PRICE);
+        return false;
+    }
+    return true;
+}
+
+
+vector<Book> readBookFromCSV(const string& filename)
+{
+    ifstream file(filename);
+    if(file.is_open())
+    {
+        vector<Book> books;
+        while(!file.eof())
+        {
+            string s;
+            getline(file,s,'\n');
+            Book b = deserializeBook(s);
+            if(isSafeTitle(b.title) && isSafeAuthor(b.authors) && isSafeYear(itos(b.year)) && isSafePrice(ftos(b.price)))
+                books.push_back(b);
+        }
+        file.close();
+        return books;
+    }
+    else
+    {
+        file.close();
+        error(ERR_FILE);
+        return vector<Book>();
+    }
 }
 
 #endif

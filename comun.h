@@ -128,6 +128,31 @@
             }
             return out;
         }
+
+        bool isnum(const string& str)
+        {
+            bool truth = true;
+            unsigned short int sepCounter = 0;
+            for(unsigned i=0;i<str.length();i++)
+            {
+                if( sepCounter++ == 0 && (str[i] == '.' || str[i] == ',') ) continue;
+                truth = truth && isdigit(str[i]);
+            }
+            return truth;
+        }
+
+        string input(const string& str, bool (*callback)(const string&) )
+        {
+            string in;
+            bool isSafe = false;
+            do{
+                cout << str;
+                getline(cin,in,'\n');
+                in = trim(in);
+                isSafe = callback(in);
+            }while(!isSafe);
+            return in;
+        }
         
     #pragma endregion
 #pragma endregion

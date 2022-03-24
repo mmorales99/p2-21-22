@@ -12,7 +12,7 @@ debug: files
 release: ${FILES}
 	${CC} -o prac2.exe ${FLAGS} ${FILES}
 dos: main2.cc
-	${CC} main2.cc error.h bookStore.h
+	${CC} main2.cc
 2: dos
 
 files: ${FILES}

@@ -22,4 +22,16 @@
 #include "binBookStore.h"
 #include "binBook.h"
 
+void importFromCsv(BookStore& myBookStore)
+{
+    cout << "Enter filename: ";
+    string filename = "";
+    getline(cin,filename,'\n');
+    if(filename.empty() || filename.length()==0) return;
+    vector<Book> readed =  readBookFromCSV(filename);
+    if(readed.size() == 0 || readed.empty()) return;
+    for(unsigned i = 0;i<readed.size();i++)
+        myBookStore.books.push_back(readed[i]);
+}
+
 #endif

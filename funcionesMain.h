@@ -59,55 +59,40 @@ void addBook(BookStore& myBookStore)
     string opts;
     Book b;
     bool isSafe = false;
-    do{
-        cout << "Enter book title:";
-        getline(cin,opts,'\n');
-        opts = trim(opts);
-        
-        if(! (isSafe = isSafeString(opts)) )
-        {
-            error(ERR_BOOK_TITLE);
-        }
-    }while(!isSafe);
+    // do{
+    //     cout << "Enter book title:";
+    //     getline(cin,opts,'\n');
+    //     opts = trim(opts);
+    //     isSafe = isSafeTitle(opts);
+    // }while(!isSafe);
+    opts = input("Enter book title:",isSafeTitle);
     b.title = opts;
     opts.clear();
-    do{
-        cout << "Enter author(s):";
-        getline(cin,opts,'\n');
-        opts = trim(opts);
-        if(! (isSafe = isSafeString(opts)) )
-        {
-            error(ERR_BOOK_AUTHORS);
-        }
-    }while(!isSafe);
+    // do{
+    //     cout << "Enter author(s):";
+    //     getline(cin,opts,'\n');
+    //     opts = trim(opts);
+    //     isSafe = isSafeAuthor(opts);
+    // }while(!isSafe);
+    opts = input("Enter author(s):",isSafeAuthor);
     b.authors = opts;
     opts.clear();
-    do{
-        cout << "Enter publication year:";
-        getline(cin,opts,'\n');
-        opts = trim(opts);
-        int yyyy = stoi(opts);
-        if( !( 1440 <= yyyy && yyyy <= 2022 ))
-        {
-            error(ERR_BOOK_DATE);
-            isSafe = false;
-        }
-        else isSafe = true;
-    }while(!isSafe);
+    // do{
+    //     cout << "Enter publication year:";
+    //     getline(cin,opts,'\n');
+    //     opts = trim(opts);
+    //     isSafe = isSafeYear(opts);
+    // }while(!isSafe);
+    opts = input("Enter publication year:",isSafeYear);
     b.year =  stoi(opts);
     opts.clear();
-    do{
-        cout << "Enter price:";
-        getline(cin,opts,'\n');
-        opts = trim(opts);
-        float yyyy = stof(opts);
-        if( yyyy < 0)
-        {
-            error(ERR_BOOK_PRICE);
-            isSafe = false;
-        }
-        else isSafe = true;
-    }while(!isSafe);
+    // do{
+    //     cout << "Enter price:";
+    //     getline(cin,opts,'\n');
+    //     opts = trim(opts);
+    //     isSafe = isSafePrice(opts);
+    // }while(!isSafe);
+    opts = input("Enter price:",isSafePrice);
     b.price =  stoi(opts);
     opts.clear();
     b.slug = generateSlug(b);
@@ -138,7 +123,7 @@ void deleteBook(BookStore& myBookStore)
     deleteBook(myBookStore,id);
 }
 
-void importExportMenu(const BookStore& myBookStore)
+void importExportMenu(BookStore& myBookStore)
 {
     gestionaInteracciones_ImportExportMenu(myBookStore);
 }
