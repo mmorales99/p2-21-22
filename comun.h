@@ -100,6 +100,7 @@
                 if(!isSafe || i == str.length()-1) return isSafe;
                 isSafe = false;
             }
+            return isSafe;
         }
 
         /**
