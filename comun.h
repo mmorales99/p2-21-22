@@ -153,6 +153,44 @@
             }while(!isSafe);
             return in;
         }
+
+        vector<string> tokenize(const string& str, const string& seps = " \n\r\0", const string& ignos = "\"\'")
+        {
+            vector<string> vs;
+            if(str.empty() || str.length()==0) return vs;
+            string s = trim(str);
+            s = reduce(s);
+            unsigned i = 0;
+            bool isIgno = false;
+            bool isSep = false;
+            char currigno = (char)0;
+            string aux = "";
+            do{
+                char curr = s[i];
+                for(unsigned j = 0;j<ignos.length();j++)
+                {
+                    if(curr == ignos[j] && currigno == (char)0){ isIgno = true; currigno = curr; }
+                    if(curr == ignos[j] && currigno == curr){ isIgno = false; currigno = (char)0; }
+                }
+                if(!isIgno)
+                {
+                    for(unsigned j = 0;j<seps.length();j++)
+                    {
+                        if(curr == seps[j]){ isSep = true; }
+                    }
+                }
+                if(isSep || i == s.length()-1 )
+                {
+                    vs.push_back(aux);
+                    aux.clear();
+                    isSep = false;
+                }
+                else
+                    aux += curr;
+                i++;
+            }while(i<s.length());
+            return vs;
+        }
         
     #pragma endregion
 #pragma endregion

@@ -114,6 +114,7 @@ BookStore addBook(BookStore& myBookStore, Book b)
 int searchBook(const BookStore& myBookStore, Book b)
 {
     if(b.id==-1) return -1;
+    if(myBookStore.books.empty() || myBookStore.books.size() == 0) return -1;
     for (unsigned i = 0; i < myBookStore.books.size(); i++)
     {
         Book baux = myBookStore.books[i];
@@ -128,6 +129,7 @@ int searchBook(const BookStore& myBookStore, Book b)
 int searchBook(const BookStore& myBookStore, int id=-1)
 {
     if(id==-1) return id;
+    if(myBookStore.books.empty() || myBookStore.books.size() == 0) return -1;
     for (unsigned i = 0; i < myBookStore.books.size(); i++)
     {
         Book b = myBookStore.books[i];

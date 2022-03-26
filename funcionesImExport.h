@@ -31,7 +31,10 @@ void importFromCsv(BookStore& myBookStore)
     vector<Book> readed =  readBookFromCSV(filename);
     if(readed.size() == 0 || readed.empty()) return;
     for(unsigned i = 0;i<readed.size();i++)
+    {
+        readed[i].id = getNextID(myBookStore);
         myBookStore.books.push_back(readed[i]);
+    }
 }
 
 #endif

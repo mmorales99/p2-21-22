@@ -80,7 +80,8 @@ Book createBook(
 string toShortString(Book b)
 {
     stringstream ss;
-    ss << b.id << ". " << b.title << " (" << b.year <<"), " << b.price ;
+    //ss += to_string(b.id) + ". " + b.title + " (" + to_string(b.year) + "), " + to_string(b.price) ;
+    ss << b.id << ". " << b.title << " (" << b.year << "), " << b.price ;
     return ss.str();
 }
 
@@ -151,6 +152,20 @@ bool isSafePrice(const string& str)
     return true;
 }
 
+Book deserializeBook(const string& str)
+{
+    //"titulo","autores",anyo,"URL",precio'
+    Book b;
+    if(str.empty() || str.length() == 0) return b;
+    vector<string> tokens = tokenize(str,",","\"");
+    if(tokens.empty() || tokens.size() ==0 ) return b;
+    b.title = tokens[0];
+    b.authors = tokens[1];
+    b.year = stoi(tokens[2]);
+    b.slug = tokens[3];
+    b.price = stof(tokens[4]);
+    return b;
+}
 
 vector<Book> readBookFromCSV(const string& filename)
 {
@@ -162,9 +177,12 @@ vector<Book> readBookFromCSV(const string& filename)
         {
             string s;
             getline(file,s,'\n');
-            Book b = deserializeBook(s);
-            if(isSafeTitle(b.title) && isSafeAuthor(b.authors) && isSafeYear(itos(b.year)) && isSafePrice(ftos(b.price)))
-                books.push_back(b);
+            Book b = deserializeBook(trim(s));
+            if(isSafeTitle(b.title))
+                if(isSafeAuthor(b.authors))
+                    if(isSafeYear(to_string(b.year)))
+                        if(isSafePrice(to_string(b.price)))
+                            books.push_back(b);
         }
         file.close();
         return books;

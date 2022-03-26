@@ -112,7 +112,8 @@ void deleteBook(BookStore& myBookStore)
         return;
     }
     opts = trim(opts);
-    id = stoi(opts);
+    if(isnum(opts))
+        id = stoi(opts);
     opts.clear();
     id = searchBook(myBookStore,id);
     if(id == -1)
