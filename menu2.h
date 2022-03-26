@@ -19,6 +19,7 @@
 #include "comun.h"
 #include "error.h"
 #include "bookStore.h"
+#include "funcionesImExport.h"
 
 /** @brief Enum que contiene todas las opciones del menu de importacion/exportacion. */
 enum IMPORT_EXPORT_MENU_OPTIONS{
