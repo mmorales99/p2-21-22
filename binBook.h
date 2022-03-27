@@ -16,6 +16,7 @@
 //#pragma once
 // <order 4>
 #include "comun.h"
+#include "Book.h"
 
 /** @brief Estructura que representa en memoria fisica un libro */
 struct BinBook
