@@ -193,7 +193,7 @@
             return vs;
         }
 
-        string to_string(const char* arr, const unsigned max_leng = INTMAX_MAX)
+        string to_string(const char* arr, const long unsigned int max_leng = INTMAX_MAX)
         {
             string out = "";
             unsigned i = 0;

@@ -18,6 +18,8 @@
 // <order 3>
 #include "comun.h"
 #include "book.h"
+#include "binBookStore.h"
+#include "binBook.h"
 
 /** @brief Estructura que representa una tienda de libros (BookStore) */
 struct BookStore
