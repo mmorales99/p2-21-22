@@ -26,24 +26,19 @@
 // <order 7>
 #include "menu.h"
 #include "bookStore.h"
+#include "argumentos.h"
 
-/**
- * @brief Programa que gestiona todas las operaciones soportadas por el programa principal
- * 
- * @param argc total de argumentos
- * @param argv vector de argumentos
- * @param myBS tienda de libros sobre la que operar e interactuar
- */
-void gestionaArgumentos(int argc, char** argv, BookStore myBS)
-{
-
-}
 
 /** @brief Programa principal */
 int main(int argc, char** argv)
 {
     BookStore myBS = createBookStore("My Book Store");
-    gestionaArgumentos(argc, argv, myBS);
+    int result = gestionaArgumentos(argc-1, argv, myBS); // argc siempre vale 1 o mas, le restamos 1 para saber los argumentos del programa sin contar el nombre del programa
+    if(result != 0)
+    {
+        error(ERR_ARGS);
+        return 1;
+    }
     gestionaInteracciones(myBS);
 }
 

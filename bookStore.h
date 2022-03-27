@@ -98,12 +98,6 @@ string toLongString(BookStore bs)
     return ss.str();
 }
 
-BookStore addBook(BookStore& myBookStore, Book b)
-{
-    myBookStore.books.push_back(b);
-    return myBookStore;
-}
-
 /**
  * @brief Elastic search sobre la lista de libros
  * 
@@ -141,9 +135,109 @@ int searchBook(const BookStore& myBookStore, int id=-1)
     return -1;
 }
 
+vector<Book> readBooksFromCSV(const string& filename)
+{
+    ifstream file(filename);
+    vector<Book> books;
+    if(file.is_open())
+    {
+        while(!file.eof())
+        {
+            string s;
+            getline(file,s,'\n');
+            Book b = readBookFromString(s);
+            if(b.id != -1)
+                books.push_back(b);
+        }
+    }
+    file.close();
+    return books;
+}
+
+string toCsv(const vector<Book>& v)
+{
+    stringstream ss;
+    // ss << bs.name << "("<< bs.books.size()<<")" << endl;
+    for (size_t i = 0; i < v.size(); i++)
+    {
+        Book b = v[i];
+        ss << toLongString(b) << endl;
+    }
+    return ss.str();
+}
+
+int writeToCsv(const vector<Book>& v, const string& filename)
+{
+    int result = 0;
+    ofstream file(filename,ios::out);
+    if(file.is_open())
+    {
+    file << toCsv(v);  
+    } 
+    else
+        result = 1;
+    file.close();
+    return result;
+}
+
+BookStore addBook(BookStore& myBookStore, Book b)
+{
+    myBookStore.books.push_back(b);
+    return myBookStore;
+}
+
 BookStore deleteBook(BookStore& myBookStore, int pos){
     if(pos == -1) return myBookStore;
     myBookStore.books.erase(myBookStore.books.begin()+pos);
     return myBookStore;
+}
+
+int importFromCsv(BookStore& myBookStore, const string& filename)
+{
+    int result = 0;
+    vector<Book> readed =  readBooksFromCSV(filename);
+    if(readed.size() == 0 || readed.empty()) return 1; // error 1, no se han leido libros
+    for(unsigned i = 0;i<readed.size();i++)
+    {
+        readed[i].id = getNextID(myBookStore);
+        myBookStore.books.push_back(readed[i]);
+    }
+    return 0; // todo ha ido bien
+}
+
+int exportToCsv(const BookStore& myBookStore, const string& filename)
+{
+    int result = 0;
+    vector<Book> exportable = myBookStore.books;
+    if(exportable.size() == 0 || exportable.empty()) return 0; // error 1, no se han leido libros
+    return writeToCsv(exportable, filename); // todo ha ido bien
+}
+
+int loadData(BookStore& myBookStore, const string& filename)
+{
+    int result = 0;
+    BinBookStore bbs = readBinBookStore(filename,result);
+    if(result == 0)
+    {
+        vector<BinBook> v = readBooksFromBin(filename,result);
+        if((result == 0) && (!v.empty() || v.size()!=0) )
+        {
+            myBookStore = BBStoBS(bbs);
+            myBookStore.books = VBBtoVB(v);
+        }
+    }
+    return result;
+}
+
+int saveData(const BookStore& myBookStore, const string& filename)
+{
+    int result = 0;
+    result = writeBookStoreToBin(filename,myBookStore);
+    if(result == 0)
+    {
+        vector<Book> v = myBookStore.books;
+        result = writeBooksToBin(filename,v);
+    }
+    return result;
 }
 #endif

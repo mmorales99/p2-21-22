@@ -1,8 +1,7 @@
 name: Compilación Práctica 2
 on:
   push:
-    branches: 
-    - master
+    branches:
     - prac2
   workflow_dispatch:
     

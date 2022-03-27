@@ -34,6 +34,8 @@ enum ERROR
     ERR_ID,
     /** @brief Error por archivo no valido */
     ERR_FILE,
+    /** @brief Error por argumentos del programa erroneos */
+    ERR_ARGS
 };
 
 /** @brief Funcion que 'maneja' los errores producidos y listados en ERROR.
@@ -63,6 +65,9 @@ void error(ERROR e)
         break;
     case ERR_FILE:
         cout << "ERROR: wrong file" << endl;
+        break;
+    case ERR_ARGS:
+        cout << "ERROR: wrong args" << endl;
         break;
     default:
         cout << "ERROR: there is no error in ERROR type equal to: " << e << endl;

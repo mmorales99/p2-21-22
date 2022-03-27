@@ -90,4 +90,98 @@ BinBook createBinBook(
     return createBinBook(id,title.c_str(),authors.c_str(),year,slug.c_str(),price);
 }
 
+Book BBtoB(const BinBook& bb, Book& b)
+{
+    b = createBook(bb.id,to_string(bb.title),to_string(bb.authors),bb.year,to_string(bb.slug),bb.price);
+    return b;
+}
+Book BBtoB(const BinBook& bb)
+{
+    Book b;
+    BBtoB(bb,b);
+    return b;
+}
+
+BinBook BtoBB(const Book& b, BinBook& bb)
+{
+    bb = createBinBook(b.id,b.title,b.authors,b.year,b.slug,b.price);
+    return bb;
+}
+BinBook BtoBB(const Book& b)
+{
+    BinBook bb;
+    BtoBB(b,bb);
+    return bb;
+}
+
+vector<Book> VBBtoVB(const vector<BinBook>& vbb, vector<Book>& vb)
+{
+    for(unsigned i = 0; i < vbb.size(); i++)
+    {
+        Book b = BBtoB(vbb[i]);
+        vb.push_back(b);
+    }
+    return vb;
+}
+vector<Book> VBBtoVB(const vector<BinBook>& vbb)
+{
+    vector<Book> vb;
+    VBBtoVB(vbb,vb);
+    return vb;
+}
+
+vector<BinBook> VBtoVBB(const vector<Book>& vb, vector<BinBook>& vbb)
+{
+    for(unsigned i = 0; i < vb.size(); i++)
+    {
+        BinBook bb = BtoBB(vb[i]);
+        vbb.push_back(bb);
+    }
+    return vbb;
+}
+vector<BinBook> VBtoVBB(const vector<Book>& vb)
+{
+    vector<BinBook> vbb;
+    VBtoVBB(vb,vbb);
+    return vbb;
+}
+
+vector<BinBook> readBooksFromBin(const string& filename, int& result)
+{
+    vector<BinBook> books;
+    result = 0;
+    ifstream file(filename, ios::in|ios::binary);
+    if(file.is_open())
+    {
+        while(!file.eof())
+        {
+            BinBook bb;
+            file.read((char*)&bb, sizeof(BinBook));
+            books.push_back(bb);
+        }
+    }
+    else
+        result = 1;
+    file.close();
+    return books;
+}
+
+int writeBooksToBin(const string& filename,const vector<Book>& v)
+{
+    int result = 0;
+    vector<BinBook> vb = VBtoVBB(v);
+    ofstream file(filename, ios::out|ios::binary);
+    if(file.is_open())
+    {
+        for(unsigned i = 0;i<vb.size();i++)
+        {
+            file.write((const char*)&vb[i],sizeof(BinBook));
+        }
+    }
+    else
+        result = 1;
+    file.close();
+    return result;
+}
+
 #endif

@@ -159,40 +159,20 @@ Book deserializeBook(const string& str)
     if(str.empty() || str.length() == 0) return b;
     vector<string> tokens = tokenize(str,",","\"");
     if(tokens.empty() || tokens.size() ==0 ) return b;
-    b.title = tokens[0];
-    b.authors = tokens[1];
-    b.year = stoi(tokens[2]);
-    b.slug = tokens[3];
-    b.price = stof(tokens[4]);
+    b = createBook( INT16_MAX ,tokens[0], tokens[1], stoi(tokens[2]), tokens[3], stof(tokens[4]));
     return b;
 }
 
-vector<Book> readBookFromCSV(const string& filename)
+Book readBookFromString(const string& s)
 {
-    ifstream file(filename);
-    if(file.is_open())
-    {
-        vector<Book> books;
-        while(!file.eof())
-        {
-            string s;
-            getline(file,s,'\n');
-            Book b = deserializeBook(trim(s));
-            if(isSafeTitle(b.title))
-                if(isSafeAuthor(b.authors))
-                    if(isSafeYear(to_string(b.year)))
-                        if(isSafePrice(to_string(b.price)))
-                            books.push_back(b);
-        }
-        file.close();
-        return books;
-    }
-    else
-    {
-        file.close();
-        error(ERR_FILE);
-        return vector<Book>();
-    }
+    Book b = deserializeBook(trim(s));
+    if(isSafeTitle(b.title))
+        if(isSafeAuthor(b.authors))
+            if(isSafeYear(to_string(b.year)))
+                if(isSafePrice(to_string(b.price)))
+                    return b;
+    b.id = -1;
+    return b;
 }
 
 #endif

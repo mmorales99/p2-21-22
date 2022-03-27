@@ -85,6 +85,15 @@ void gestionaInteracciones_ImportExportMenu(BookStore &myBS)
         case IMPORT:
             importFromCsv(myBS);
             break;
+        case EXPORT:
+            exportToCsv(myBS);
+            break;
+        case LOAD:
+            loadData(myBS);
+            break;
+        case SAVE:
+            saveData(myBS);
+            break;
         case BACK:
             return;
         default:

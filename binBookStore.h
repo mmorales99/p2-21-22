@@ -17,6 +17,7 @@
 //#pragma once
 // <order 5>
 #include "comun.h"
+#include "binBook.h"
 
 /** @brief Estructura que representa en memoria fisica una tienda de libros */
 struct BinBookStore
@@ -59,6 +60,60 @@ BinBookStore createBinBookStore(
     )
 {
     return createBinBookStore(name.c_str(),nextId);
+}
+
+BookStore BBStoBS(const BinBookStore& bbs, BookStore& myBookStore)
+{
+    myBookStore = createBookStore( to_string(bbs.name), vector<Book>(), bbs.nextId);
+    return myBookStore;
+}
+BookStore BBStoBS(const BinBookStore& bbs)
+{
+    BookStore myBookStore;
+    BBStoBS(bbs, myBookStore);
+    return myBookStore;
+}
+
+BinBookStore BStoBBS(const BookStore& myBookStore, BinBookStore& bbs)
+{
+    bbs = createBinBookStore(myBookStore.name,myBookStore.nextId);
+    return bbs;
+}
+BinBookStore BStoBBS(const BookStore& myBookStore)
+{
+    BinBookStore bbs;
+    BStoBBS(myBookStore,bbs);
+    return bbs;
+}
+
+BinBookStore readBinBookStore(const string& filename, int& result)
+{
+    BinBookStore bbs;
+    result = 0;
+    ifstream file(filename, ios::in|ios::binary);
+    if(file.is_open())
+    {
+        file.read((char*)&bbs, sizeof(BinBookStore));
+    }
+    else
+        result = 1;
+    file.close();
+    return bbs;
+}
+
+int writeBookStoreToBin(const string& filename, const BookStore& myBookStore)
+{
+    int result = 0;
+    BinBookStore bb = BStoBBS(myBookStore);
+    ofstream file(filename, ios::out|ios::binary);
+    if(file.is_open())
+    {
+        file.write((const char*)&bb,sizeof(BinBookStore));
+    }
+    else
+        result = 1;
+    file.close();
+    return result;
 }
 
 #endif

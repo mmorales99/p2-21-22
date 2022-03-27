@@ -192,6 +192,19 @@
             }while(i<s.length());
             return vs;
         }
+
+        string to_string(const char* arr, const unsigned max_leng = INTMAX_MAX)
+        {
+            string out = "";
+            unsigned i = 0;
+            while ( arr[i]!='\0' && i < max_leng )
+            {
+                out += arr[i];
+                i++;
+            }
+            out += "\0";
+            return out;
+        }
         
     #pragma endregion
 #pragma endregion

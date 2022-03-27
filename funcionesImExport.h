@@ -28,13 +28,67 @@ void importFromCsv(BookStore& myBookStore)
     string filename = "";
     getline(cin,filename,'\n');
     if(filename.empty() || filename.length()==0) return;
-    vector<Book> readed =  readBookFromCSV(filename);
-    if(readed.size() == 0 || readed.empty()) return;
-    for(unsigned i = 0;i<readed.size();i++)
+    int result = importFromCsv(myBookStore, filename);
+    if(result != 0)
     {
-        readed[i].id = getNextID(myBookStore);
-        myBookStore.books.push_back(readed[i]);
+        error(ERR_FILE);
     }
 }
 
+void exportToCsv(const BookStore& myBookStore)
+{
+    cout << "Enter filename: ";
+    string filename = "";
+    getline(cin,filename,'\n');
+    if(filename.empty() || filename.length()==0) return;
+    int result = exportToCsv(myBookStore, filename);
+    if(result != 0)
+    {
+        error(ERR_FILE);
+    }
+}
+
+bool isYesNo(const string& str)
+{
+    string answer = tolower(trim(str));
+    bool isYN = true;
+    if(answer.length() != 1)
+    {
+        isYN = false;
+    }
+    else if(answer[0] == 'y' || answer[0]=='n')
+    {
+        isYN = true;
+    }
+    return isYN;
+}
+
+void loadData(BookStore& myBookStore)
+{
+    string answer = input("All data will be erased, do you want to continue (Y/N)?: ", isYesNo);
+    char yn = answer[0];
+    if(yn == 'n') return;
+    cout << "Enter filename: ";
+    string filename = "";
+    getline(cin,filename,'\n');
+    if(filename.empty() || filename.length()==0) return;
+    int result = loadData(myBookStore, filename);
+    if(result != 0)
+    {
+        error(ERR_FILE);
+    }
+}
+
+void saveData(const BookStore& myBookStore)
+{
+    cout << "Enter filename: ";
+    string filename = "";
+    getline(cin,filename,'\n');
+    if(filename.empty() || filename.length()==0) return;
+    int result = saveData(myBookStore, filename);
+    if(result != 0)
+    {
+        error(ERR_FILE);
+    }
+}
 #endif
