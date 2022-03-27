@@ -19,8 +19,6 @@
 #include "comun.h"
 #include "bookStore.h"
 #include "book.h"
-#include "binBookStore.h"
-#include "binBook.h"
 
 void importFromCsv(BookStore& myBookStore)
 {
