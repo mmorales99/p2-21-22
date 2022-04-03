@@ -1,0 +1,21 @@
+name: AutoCorrector Práctica 2
+on:
+  push:
+    branches:
+    - prac2
+  workflow_dispatch:
+    
+jobs:
+  compilar_todo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compilar todo
+        run: make debug
+      - name: Unzip Autocorrector
+        run: apt-get install unzip
+        run: unzip ./autocorrector-prac2.tar
+      - name: Autocorrector prac2
+        run: ./autocorrector-prac2/autocorrectorP2p2.sh
+        
+        

@@ -1,0 +1,66 @@
+[Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: Enter book title: Enter author(s): Enter publication year: Enter price: [Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: Enter book title: Enter author(s): Enter publication year: Enter price: [Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: Enter book title: Enter author(s): Enter publication year: Enter price: [Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: Enter book title: Enter author(s): Enter publication year: Enter price: [Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: [Import/export options]
+1- Import from CSV
+2- Export to CSV
+3- Load data
+4- Save data
+b- Back to main menu
+Option: Enter filename: [Import/export options]
+1- Import from CSV
+2- Export to CSV
+3- Load data
+4- Save data
+b- Back to main menu
+Option: [Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: "Cuentos infantiles","Hans Christian Andersen",1835,"cuentos-infantiles",30.99
+"La Divina comedia","Dante Alighieri",1534,"la-divina-comedia",25.6
+"Orgullo y prejuicio","Jane Austen",1813,"orgullo-y-prejuicio",18.9
+"Moby-Dick","Herman Melville",1851,"moby-dick",21.87
+[Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: 

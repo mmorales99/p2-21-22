@@ -1,0 +1,49 @@
+[Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: [Import/export options]
+1- Import from CSV
+2- Export to CSV
+3- Load data
+4- Save data
+b- Back to main menu
+Option: All data will be erased, do you want to continue (Y/N)?: All data will be erased, do you want to continue (Y/N)?: Enter filename: [Import/export options]
+1- Import from CSV
+2- Export to CSV
+3- Load data
+4- Save data
+b- Back to main menu
+Option: [Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: 1. Cuentos infantiles (1835), 30.99
+2. La Divina comedia (1534), 25.6
+3. Orgullo y prejuicio (1813), 18.9
+4. El coronel no tiene quien le escriba (1961), 13.95
+[Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: "Cuentos infantiles","Hans Christian Andersen",1835,"cuentos-infantiles",30.99
+"La Divina comedia","Dante Alighieri",1534,"la-divina-comedia",25.6
+"Orgullo y prejuicio","Jane Austen",1813,"orgullo-y-prejuicio",18.9
+"El coronel no tiene quien le escriba","Gabriel Garcia Marquez",1961,"el-coronel-no-tiene-quien-le-escriba",13.95
+[Options]
+1- Show catalog
+2- Show extended catalog
+3- Add book
+4- Delete book
+5- Import/export
+q- Quit
+Option: 
